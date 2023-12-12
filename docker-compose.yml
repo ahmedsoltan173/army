@@ -12,7 +12,7 @@ services:
         image: mysql:latest
         environment:
             MYSQL_ROOT_PASSWORD: root
-            MYQL_DATABASE: army1
+            MYSQL_DATABASE: army1
         ports:
             - 3307:3306
 
