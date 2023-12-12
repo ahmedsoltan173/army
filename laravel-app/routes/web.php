@@ -1,5 +1,6 @@
 <?php
 
+use App\Livewire\Students\Students;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,14 +14,24 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+Auth::routes();
+/**
+ * to test the connection in the image of the Docker
+ */
+// Route::get('/test-db-connection', function () {
+//     try {
+//         DB::connection()->getPdo();
+//         return 'Database connection successful!';
+//     } catch (\Exception $e) {
+//         return 'Database connection failed: ' . $e->getMessage();
+//     }
+// });
+
+
 Route::get('/', function () {
     return view('welcome');
 });
-Route::get('/test-db-connection', function () {
-    try {
-        DB::connection()->getPdo();
-        return 'Database connection successful!';
-    } catch (\Exception $e) {
-        return 'Database connection failed: ' . $e->getMessage();
-    }
-});
+
+Route::get('/test',Students::class);
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
