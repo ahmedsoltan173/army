@@ -16,3 +16,5 @@ d-migrate:
 	docker exec laravel-doc-app bash -c "php artisan migrate"
 d-bash:
 	docker exec -it laravel-doc-app bash
+d-db:
+	docker exec -it army1_mysql_db_1  mysql -u root -p
