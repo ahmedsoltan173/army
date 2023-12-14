@@ -1,6 +1,6 @@
 <?php
 
-use App\Livewire\Students\Students;
+use App\Livewire\Student\Student;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -32,6 +32,6 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/test',Students::class);
+Route::get('/test',Student::class);
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
