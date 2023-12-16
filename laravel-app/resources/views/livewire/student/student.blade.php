@@ -12,9 +12,8 @@
         <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addStudentModal">
             Add Student
         </button>
-
   <!-- Modal -->
-  <div class="modal fade" id="addStudentModal" tabindex="-1" aria-labelledby="addStudentLabel" aria-hidden="true">
+  <div wire:ignore.self class="modal fade" id="addStudentModal" tabindex="-1" aria-labelledby="addStudentLabel" aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
@@ -24,12 +23,9 @@
         <div class="modal-body">
             <form action="" wire:submit.prevent="store()">
                 <div class="form-group">
-                    <input type="text" name="name" class="form-control" placeholder="Student First Name ..." wire:model="student_first_name">
-                    @error('name')
-                    <div  style="display: block">
-                       {{ $message }}
-                    </div>
-                    @enderror
+                    <input type="text" name="student_first_name" class="form-control" placeholder="Student First Name ..." wire:model="student_first_name">
+                    @error('student_first_name') <span class="error" style="color: rgb(60, 19, 19)">{{ $message }}</span> @enderror
+
                 </div>
                 <br>
 
@@ -53,7 +49,7 @@
 <br>
 </div>
 {{-- department_id --}}
-                <div class="form-group">
+                {{-- <div class="form-group">
                     <input type="text" name="name" class="form-control" placeholder="Student Name ..." wire:model="student_name">
                     @error('name')
                     <div  style="display: block">
@@ -78,7 +74,7 @@
                        {{ $message }}
                     </div>
                     @enderror
-                </div>
+                </div> --}}
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
