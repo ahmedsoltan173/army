@@ -2,6 +2,9 @@
 
 namespace App\Livewire\Student;
 
+use App\Models\Department;
+use App\Models\Levels;
+use App\Models\Section;
 use App\Models\Students;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Validation\Rule;
@@ -10,12 +13,12 @@ use Livewire\Component;
 
 class Student extends Component
 {
-    public Collection $students;
+    public Collection $students,$departments,$levels,$sections;
     public string $student_first_name = "";
     public string $student_last_name = "";
     public string $code = "";
-    public int $department_id = 0;
-    public int $section_id = 0;
+    public int $department_id = 0 ;
+    public int $section_id = 0 ;
     public int $level_id = 0;
     public string $type = "student";
 
@@ -33,7 +36,17 @@ class Student extends Component
     public function mount()
     {
         $this->students = Students::get();
+        $this->departments=Department::get();
+        $this->levels=Levels::get();
+
     }
+
+    public function getSections(){
+        dd($this->department_id);
+        $this->sections=Section::where('department_id',$this->department_id)->get();
+    dd($this->sections);
+    }
+
 
     public function store()
     {

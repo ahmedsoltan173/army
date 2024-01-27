@@ -47,17 +47,36 @@
                     </div>
                     @enderror
 <br>
-</div>
-{{-- department_id --}}
-                {{-- <div class="form-group">
-                    <input type="text" name="name" class="form-control" placeholder="Student Name ..." wire:model="student_name">
-                    @error('name')
+                <div class="form-group">
+                    <select name="department" id=""class="form-control"  wire:model='department_id' wire:click.prevent="getSections()">
+                        @foreach ($departments as $depart)
+                            <option value="{{ $depart->id }}">{{ $depart->name }}</option>
+                        @endforeach
+                    </select>
+                    @error('department')
                     <div  style="display: block">
-                       {{ $message }}
+                        {{ $message }}
                     </div>
                     @enderror
                 </div>
 <br>
+<div class="form-group">
+    {{ $sections }}
+    <select name="section" id=""class="form-control"  wire:model='section_id'>
+        {{-- @foreach ($sections as $section)
+        <option value="">{{ $section }}</option>
+        @endforeach --}}
+    </select>
+    @error('department')
+    <div  style="display: block">
+        {{ $message }}
+    </div>
+    @enderror
+</div>
+<br>
+</div>
+{{-- department_id --}}
+{{--
                 <div class="form-group">
                     <input type="text" name="name" class="form-control" placeholder="Student Name ..." wire:model="student_name">
                     @error('name')
@@ -89,29 +108,29 @@
         <thead>
           <tr>
             <th scope="col">#</th>
-            <th scope="col">First</th>
-            <th scope="col">Last</th>
-            <th scope="col">Handle</th>
+            <th scope="col">First Name </th>
+            <th scope="col">Last Name </th>
+            <th scope="col">Code</th>
+            <th scope="col">Department</th>
+            <th scope="col">Section</th>
+            <th scope="col">Type</th>
+            <th scope="col">Created At </th>
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <th scope="row">1</th>
-            <td>Mark</td>
-            <td>Otto</td>
-            <td>@mdo</td>
-          </tr>
-          <tr>
-            <th scope="row">2</th>
-            <td>Jacob</td>
-            <td>Thornton</td>
-            <td>@fat</td>
-          </tr>
-          <tr>
-            <th scope="row">3</th>
-            <td colspan="2">Larry the Bird</td>
-            <td>@twitter</td>
-          </tr>
+            @foreach ($students as $student)
+            <tr>
+              <th scope="row">#</th>
+              <td>{{ $student->first_name }}</td>
+              <td>{{ $student->last_name }}</td>
+              <td>{{ $student->code }}</td>
+              <td>{{ $student?->department?->name }}</td>
+              <td>{{ $student?->section?->name }}</td>
+              <td>{{ $student->type }}</td>
+              <td>{{ $student->created_at }}</td>
+            </tr>
+            @endforeach
+
         </tbody>
       </table>
 </div>
