@@ -4,8 +4,10 @@
 @include('layouts.sidebar')
 <div id="layoutSidenav_content">
     {{-- <main> --}}
-        @yield('body')
         <div style="margin: 30px">
+        @yield('body')
+
+
             @if(isset($slot))
                 {{$slot}}
             @endif

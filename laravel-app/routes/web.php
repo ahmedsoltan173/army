@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\DepartmentController;
 use App\Livewire\Student\Student;
 use Illuminate\Support\Facades\Route;
 
@@ -33,5 +34,14 @@ Route::get('/', function () {
 });
 
 Route::get('/test',Student::class);
-
+// Route::controller(Department::class);
+Route::prefix('/department')->group(function(){
+    Route::get('/index',[DepartmentController::class,'index'])->name('department.index');
+    Route::get('/create',[DepartmentController::class,'create'])->name('department.create');
+    Route::post('/store',[DepartmentController::class,'store'])->name('department.store');
+    Route::get('/edit/{id}',[DepartmentController::class,'edit'])->name('department.edit');
+    Route::post('/update/{id}',[DepartmentController::class,'update'])->name('department.update');
+    Route::get('/delete/{id}',[DepartmentController::class,'destroy'])->name('department.delete');
+});
+// department.store
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
